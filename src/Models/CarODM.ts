@@ -16,6 +16,11 @@ class CarODM extends ODM<ICar> {
     const modelName = 'cars';
     super(carSchema, modelName);
   }
+
+  public async create(carFromReq: ICar): Promise<ICar> {
+    const createdCar = await this.model.create(carFromReq);
+    return createdCar;
+  } 
 }
 
 export default CarODM;
