@@ -1,16 +1,12 @@
-import { NextFunction, Request, Response, Router } from 'express';
+import { Router } from 'express';
 
 abstract class Controller <ServiceType> {
-  protected req: Request;
-  protected res: Response;
-  protected next: NextFunction;
   protected service: ServiceType;
+  protected router: Router;
 
-  constructor(service: ServiceType, req: Request, res: Response, next: NextFunction) {
-    this.req = req;
-    this.res = res;
-    this.next = next;
+  constructor(service: ServiceType) {
     this.service = service;
+    this.router = Router();
   }
 
   abstract initRoutes(): Router;

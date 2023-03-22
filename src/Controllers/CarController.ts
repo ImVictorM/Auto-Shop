@@ -1,22 +1,23 @@
-import { NextFunction, Request, Response, Router } from 'express';
+import { Request, Response, Router } from 'express';
 import CarService from '../Services/CarService';
 import Controller from './Controller';
 import HTTPStatusCode from '../utils/HTTPStatusCode';
 
 class CarController extends Controller<CarService> {
-  constructor(req: Request, res: Response, next: NextFunction) {
+  constructor() {
     const service = new CarService();
-    super(service, req, res, next);
+    super(service);
   }
 
-  public async requestCarCreation() {
-    const carFromReq = this.req.body;
+  public async requestCarCreation(req: Request, res: Response) {
+    const carFromReq = req.body;
     const createdCar = await this.service.createOne(carFromReq);
-    return this.res.status(HTTPStatusCode.CREATED).json(createdCar);
+    return res.status(HTTPStatusCode.CREATED).json(createdCar);
   }
 
-  initRoutes(): Router {
-    throw new Error('Method not implemented.');
+  public initRoutes(): Router {
+    this.router.post('/', (req, res) => this.requestCarCreation(req, res));
+    return this.router;
   }
 }
 
