@@ -7,8 +7,8 @@ class Car {
   protected color: string;
   protected status: boolean;
   protected buyValue: number;
-  private _doorsQty: number;
-  private _seatsQty: number;
+  private doorsQty: number;
+  private seatsQty: number;
 
   constructor(car: ICar) {
     this.id = car.id;
@@ -17,8 +17,8 @@ class Car {
     this.color = car.color;
     this.status = car.status || false;
     this.buyValue = car.buyValue;
-    this._doorsQty = car.doorsQty;
-    this._seatsQty = car.seatsQty;
+    this.doorsQty = car.doorsQty;
+    this.seatsQty = car.seatsQty;
   }
 }
 
