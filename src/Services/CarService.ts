@@ -1,3 +1,4 @@
+import { isValidObjectId } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import Service from './Service';
 import CarODM from '../Models/CarODM';
@@ -19,6 +20,27 @@ class CarService extends Service<CarODM> {
     const carListFromDB = await this.odm.getAll();
     const carList = carListFromDB.map((car) => this.mapCar(car));
     return carList;
+  }
+
+  public async getById(carId: string): Promise<Car> {
+    this.validateCarIdFromReq(carId);
+    const carFromDB = await this.odm.getById(carId);
+    this.validateCarExistence(carFromDB);
+    const car = this.mapCar(carFromDB as ICar);
+    return car;
+  }
+
+  private validateCarIdFromReq(id: string): void {
+    if (!isValidObjectId(id)) {
+      throw new Error('Invalid mongo id');
+    }
+  }
+
+  private validateCarExistence(car: ICar | null): ICar {
+    if (!car) {
+      throw new Error('Car not found');
+    }
+    return car;
   }
 
   private mapCar(carFromDB: ICar) {

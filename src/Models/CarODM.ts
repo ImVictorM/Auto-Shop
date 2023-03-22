@@ -26,6 +26,11 @@ class CarODM extends ODM<ICar> {
     const carList = await this.model.find();
     return carList;
   }
+
+  public async getById(carId: string): Promise<ICar | null> {
+    const car = await this.model.findById(carId);
+    return car;
+  }
 }
 
 export default CarODM;

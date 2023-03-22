@@ -1,4 +1,4 @@
-import { Request, Response, Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 import CarService from '../Services/CarService';
 import Controller from './Controller';
 import HTTPStatusCode from '../utils/HTTPStatusCode';
@@ -20,8 +20,19 @@ class CarController extends Controller<CarService> {
     return res.status(HTTPStatusCode.OK).json(carList);
   }
 
+  public async requestOne(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+    try {
+      const car = await this.service.getById(id);
+      return res.status(HTTPStatusCode.OK).json(car);
+    } catch (error) {
+      return next();
+    }
+  }
+
   public initRoutes(): Router {
     this.router.get('/', (req, res) => this.requestAll(req, res));
+    this.router.get('/:id', (req, res, next) => this.requestOne(req, res, next));
     this.router.post('/', (req, res) => this.requestCarCreation(req, res));
     return this.router;
   }
