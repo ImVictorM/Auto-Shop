@@ -3,6 +3,8 @@ import ICar from '../Interfaces/ICar';
 import Service from './Service';
 import CarODM from '../Models/CarODM';
 import Car from '../Domains/Car';
+import UnprocessableEntityException from '../Errors/UnprocessableEntityException';
+import NotFoundException from '../Errors/NotFoundException';
 
 class CarService extends Service<CarODM> {
   constructor() {
@@ -32,13 +34,13 @@ class CarService extends Service<CarODM> {
 
   private validateCarIdFromReq(id: string): void {
     if (!isValidObjectId(id)) {
-      throw new Error('Invalid mongo id');
+      throw new UnprocessableEntityException('Invalid mongo id');
     }
   }
 
   private validateCarExistence(car: ICar | null): ICar {
     if (!car) {
-      throw new Error('Car not found');
+      throw new NotFoundException('Car not found');
     }
     return car;
   }

@@ -26,7 +26,7 @@ class CarController extends Controller<CarService> {
       const car = await this.service.getById(id);
       return res.status(HTTPStatusCode.OK).json(car);
     } catch (error) {
-      return next();
+      return next(error);
     }
   }
 
