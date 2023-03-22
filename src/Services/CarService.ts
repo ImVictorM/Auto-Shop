@@ -10,13 +10,19 @@ class CarService extends Service<CarODM> {
   }
 
   public async createOne(carFromReq: ICar): Promise<Car> {
-    const createdCar = await this.odm.create(carFromReq);
+    const createdCar = await this.odm.createOne(carFromReq);
     const car = this.mapCar(createdCar);
     return car;
-  } 
+  }
 
-  private mapCar(carFromReq: ICar) {
-    const mappedCar = new Car(carFromReq);
+  public async getAll(): Promise<Car[]> {
+    const carListFromDB = await this.odm.getAll();
+    const carList = carListFromDB.map((car) => this.mapCar(car));
+    return carList;
+  }
+
+  private mapCar(carFromDB: ICar) {
+    const mappedCar = new Car(carFromDB);
     return mappedCar;
   }
 }

@@ -17,10 +17,15 @@ class CarODM extends ODM<ICar> {
     super(carSchema, modelName);
   }
 
-  public async create(carFromReq: ICar): Promise<ICar> {
+  public async createOne(carFromReq: ICar): Promise<ICar> {
     const createdCar = await this.model.create(carFromReq);
     return createdCar;
-  } 
+  }
+
+  public async getAll(): Promise<ICar[]> {
+    const carList = await this.model.find();
+    return carList;
+  }
 }
 
 export default CarODM;
