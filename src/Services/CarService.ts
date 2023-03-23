@@ -51,11 +51,10 @@ class CarService extends Service<CarODM> {
     }
   }
 
-  private validateCarExistence(car: ICar | null): ICar {
+  private validateCarExistence(car: ICar | null): void {
     if (!car) {
       throw new ExceptionWithErrorCode(HTTPStatusCode.NOT_FOUND, 'Car not found');
     }
-    return car;
   }
 }
 

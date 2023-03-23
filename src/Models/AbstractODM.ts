@@ -13,6 +13,16 @@ abstract class AbstractODM <T> {
     const documentCreated = await this.model.create(documentFromRequest);
     return documentCreated;
   }
+
+  public async getAll(): Promise<T[]> {
+    const documentList = await this.model.find();
+    return documentList;
+  }
+
+  public async getById(id: string): Promise<T | null> {
+    const document = await this.model.findById(id);
+    return document;
+  }
 }
 
 export default AbstractODM;

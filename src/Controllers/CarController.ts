@@ -15,7 +15,7 @@ class CarController extends Controller<CarService> {
     return res.status(HTTPStatusCode.CREATED).json(createdCar);
   }
 
-  private async requestAll(req: Request, res: Response) {
+  private async requestAll(_req: Request, res: Response) {
     const carList = await this.service.getAll();
     return res.status(HTTPStatusCode.OK).json(carList);
   }

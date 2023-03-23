@@ -17,16 +17,6 @@ class CarODM extends AbstractODM<ICar> {
     super(carSchema, modelName);
   }
 
-  public async getAll(): Promise<ICar[]> {
-    const carList = await this.model.find();
-    return carList;
-  }
-
-  public async getById(carId: string): Promise<ICar | null> {
-    const car = await this.model.findById(carId);
-    return car;
-  }
-
   public async updateOne(carId: string, patch: Partial<ICar>): Promise<ICar | null> {
     const updatedCar = await this.model.findOneAndUpdate(
       { _id: carId }, 
