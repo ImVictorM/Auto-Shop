@@ -1,10 +1,10 @@
 import HTTPStatusCode from '../utils/HTTPStatusCode';
 
-class NotFoundException extends Error {
-  constructor(message: string) {
+class ExceptionWithErrorCode extends Error {
+  constructor(errorCode: HTTPStatusCode, message: string) {
     super(message);
-    this.stack = HTTPStatusCode.NOT_FOUND.toString();
+    this.stack = errorCode.toString();
   }
 }
 
-export default NotFoundException;
+export default ExceptionWithErrorCode;

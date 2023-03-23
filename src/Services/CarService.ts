@@ -3,8 +3,8 @@ import ICar from '../Interfaces/ICar';
 import Service from './Service';
 import CarODM from '../Models/CarODM';
 import Car from '../Domains/Car';
-import UnprocessableEntityException from '../Errors/UnprocessableEntityException';
-import NotFoundException from '../Errors/NotFoundException';
+import ExceptionWithErrorCode from '../Errors/NotFoundException';
+import HTTPStatusCode from '../utils/HTTPStatusCode';
 
 class CarService extends Service<CarODM> {
   constructor() {
@@ -32,22 +32,22 @@ class CarService extends Service<CarODM> {
     return car;
   }
 
+  private mapCar(carFromDB: ICar) {
+    const mappedCar = new Car(carFromDB);
+    return mappedCar;
+  }
+
   private validateCarIdFromReq(id: string): void {
     if (!isValidObjectId(id)) {
-      throw new UnprocessableEntityException('Invalid mongo id');
+      throw new ExceptionWithErrorCode(HTTPStatusCode.UNPROCESSABLE_ENTITY, 'Invalid mongo id');
     }
   }
 
   private validateCarExistence(car: ICar | null): ICar {
     if (!car) {
-      throw new NotFoundException('Car not found');
+      throw new ExceptionWithErrorCode(HTTPStatusCode.NOT_FOUND, 'Car not found');
     }
     return car;
-  }
-
-  private mapCar(carFromDB: ICar) {
-    const mappedCar = new Car(carFromDB);
-    return mappedCar;
   }
 }
 
