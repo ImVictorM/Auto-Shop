@@ -30,9 +30,22 @@ class MotorcycleController extends Controller <MotorcycleService> {
     }
   }
 
+  private async requestToUpdateOne(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+    const patch = req.body;
+
+    try {
+      const updatedMotorcycle = await this.service.updateById(id, patch);
+      return res.status(HTTPStatusCode.OK).json(updatedMotorcycle);
+    } catch (error) {
+      return next(error);
+    }
+  }
+
   public initRoutes(): Router {
     this.router.get('/', (req, res) => this.requestAll(req, res));
     this.router.get('/:id', (req, res, next) => this.requestOne(req, res, next));
+    this.router.put('/:id', (req, res, next) => this.requestToUpdateOne(req, res, next));
     this.router.post('/', (req, res) => this.requestMotorcycleCreation(req, res));
     return this.router;
   }
