@@ -31,6 +31,15 @@ class CarODM extends ODM<ICar> {
     const car = await this.model.findById(carId);
     return car;
   }
+
+  public async updateOne(carId: string, patch: Partial<ICar>): Promise<ICar | null> {
+    const updatedCar = await this.model.findOneAndUpdate(
+      { _id: carId }, 
+      patch,
+      { new: true },
+    );
+    return updatedCar;
+  }
 }
 
 export default CarODM;

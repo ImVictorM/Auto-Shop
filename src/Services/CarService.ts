@@ -32,6 +32,14 @@ class CarService extends Service<CarODM> {
     return car;
   }
 
+  public async updateById(carId: string, patch: Partial<ICar>): Promise<Car> {
+    this.validateCarIdFromReq(carId);
+    const updatedCarFromDB = await this.odm.updateOne(carId, patch);
+    this.validateCarExistence(updatedCarFromDB);
+    const car = this.mapCar(updatedCarFromDB as ICar);
+    return car;
+  }
+
   private mapCar(carFromDB: ICar) {
     const mappedCar = new Car(carFromDB);
     return mappedCar;
