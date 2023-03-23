@@ -37,6 +37,14 @@ describe('Testing CarService', function () {
     expect(response).to.be.deep.equal(VALID_CAR_FROM_DB);
   });
 
+  it('Can updated a car by its id', async function () {
+    Sinon.stub(CarODM.prototype, 'updateOne').resolves(VALID_CAR_FROM_DB);
+
+    const response = await service.updateById(VALID_ID, VALID_CAR_FROM_REQ);
+
+    expect(response).to.be.deep.equal(VALID_CAR_FROM_DB);
+  });
+
   it('throws an exception when the car id isn\'t valid', async function () {
     Sinon.stub(CarODM.prototype, 'getById').resolves();
 
@@ -47,6 +55,7 @@ describe('Testing CarService', function () {
       expect((error as Error).stack).to.be.equal('422');
     }
   });
+
   it('throws an exception when the car doesn\'t exist', async function () {
     Sinon.stub(CarODM.prototype, 'getById').resolves(null);
 
