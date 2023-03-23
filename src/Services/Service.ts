@@ -18,6 +18,26 @@ abstract class Service <DataInterface, Domain> {
     return mappedDocs;
   }
 
+  public async getById(id: string): Promise<Domain> {
+    this.validateIdFromRequest(id);
+    const docFromDB = await this.odm.getById(id);
+    this.validateDocExistence(docFromDB);
+    const mappedDoc = this.mapDoc(docFromDB as DataInterface);
+    return mappedDoc;
+  }
+
+  public async updateById(id: string, patch: Partial<DataInterface>): Promise<Domain> {
+    this.validateIdFromRequest(id);
+    const updatedDocFromDB = await this.odm.updateOne(id, patch);
+    this.validateDocExistence(updatedDocFromDB);
+    const car = this.mapDoc(updatedDocFromDB as DataInterface);
+    return car;
+  }
+
+  abstract validateIdFromRequest(id: string): void;
+
+  abstract validateDocExistence(doc: DataInterface | null): void;
+
   abstract mapDoc(vehicle: DataInterface): Domain; 
 }
 

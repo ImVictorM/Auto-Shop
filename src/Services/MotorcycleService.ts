@@ -12,26 +12,18 @@ class MotorcycleService extends Service <IMotorcycle, Motorcycle> {
     super(odm);
   }
 
-  public async getById(motoId: string): Promise<Motorcycle> {
-    this.validateMotoIdFromReq(motoId);
-    const motoFromDB = await this.odm.getById(motoId);
-    this.validateMotoExistence(motoFromDB);
-    const motorcycle = this.mapDoc(motoFromDB as IMotorcycle);
-    return motorcycle;
-  }
-
   public mapDoc(motoFromDB: IMotorcycle): Motorcycle {
     const mappedMoto = new Motorcycle(motoFromDB);
     return mappedMoto;
   }
 
-  private validateMotoIdFromReq(id: string): void {
+  public validateIdFromRequest(id: string): void {
     if (!isValidObjectId(id)) {
       throw new ExceptionWithErrorCode(HTTPStatusCode.UNPROCESSABLE_ENTITY, 'Invalid mongo id');
     }
   }
 
-  private validateMotoExistence(motorcycle: IMotorcycle | null): void {
+  public validateDocExistence(motorcycle: IMotorcycle | null): void {
     if (!motorcycle) {
       throw new ExceptionWithErrorCode(HTTPStatusCode.NOT_FOUND, 'Motorcycle not found');
     }
