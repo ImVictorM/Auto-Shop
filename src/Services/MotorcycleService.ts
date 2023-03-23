@@ -6,33 +6,21 @@ import MotorcycleODM from '../Models/MotorcycleODM';
 import HTTPStatusCode from '../utils/HTTPStatusCode';
 import Service from './Service';
 
-class MotorcycleService extends Service <MotorcycleODM> {
+class MotorcycleService extends Service <IMotorcycle, Motorcycle> {
   constructor() {
     const odm = new MotorcycleODM();
     super(odm);
-  }
-
-  public async createOne(motoFromReq: IMotorcycle): Promise<Motorcycle> {
-    const createdMoto = await this.odm.createOne(motoFromReq);
-    const moto = this.mapMotorcycle(createdMoto);
-    return moto;
-  }
-
-  public async getAll(): Promise<Motorcycle[]> {
-    const motocycleListFromDB = await this.odm.getAll();
-    const motorcycleList = motocycleListFromDB.map((moto) => this.mapMotorcycle(moto));
-    return motorcycleList;
   }
 
   public async getById(motoId: string): Promise<Motorcycle> {
     this.validateMotoIdFromReq(motoId);
     const motoFromDB = await this.odm.getById(motoId);
     this.validateMotoExistence(motoFromDB);
-    const motorcycle = this.mapMotorcycle(motoFromDB as IMotorcycle);
+    const motorcycle = this.mapDoc(motoFromDB as IMotorcycle);
     return motorcycle;
   }
 
-  private mapMotorcycle(motoFromDB: IMotorcycle): Motorcycle {
+  public mapDoc(motoFromDB: IMotorcycle): Motorcycle {
     const mappedMoto = new Motorcycle(motoFromDB);
     return mappedMoto;
   }

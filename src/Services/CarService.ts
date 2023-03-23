@@ -6,29 +6,17 @@ import Car from '../Domains/Car';
 import ExceptionWithErrorCode from '../Errors/NotFoundException';
 import HTTPStatusCode from '../utils/HTTPStatusCode';
 
-class CarService extends Service<CarODM> {
+class CarService extends Service<ICar, Car> {
   constructor() {
     const odm = new CarODM();
     super(odm);
-  }
-
-  public async createOne(carFromReq: ICar): Promise<Car> {
-    const createdCar = await this.odm.createOne(carFromReq);
-    const car = this.mapCar(createdCar);
-    return car;
-  }
-
-  public async getAll(): Promise<Car[]> {
-    const carListFromDB = await this.odm.getAll();
-    const carList = carListFromDB.map((car) => this.mapCar(car));
-    return carList;
   }
 
   public async getById(carId: string): Promise<Car> {
     this.validateCarIdFromReq(carId);
     const carFromDB = await this.odm.getById(carId);
     this.validateCarExistence(carFromDB);
-    const car = this.mapCar(carFromDB as ICar);
+    const car = this.mapDoc(carFromDB as ICar);
     return car;
   }
 
@@ -36,11 +24,11 @@ class CarService extends Service<CarODM> {
     this.validateCarIdFromReq(carId);
     const updatedCarFromDB = await this.odm.updateOne(carId, patch);
     this.validateCarExistence(updatedCarFromDB);
-    const car = this.mapCar(updatedCarFromDB as ICar);
+    const car = this.mapDoc(updatedCarFromDB as ICar);
     return car;
   }
 
-  private mapCar(carFromDB: ICar) {
+  public mapDoc(carFromDB: ICar) {
     const mappedCar = new Car(carFromDB);
     return mappedCar;
   }
