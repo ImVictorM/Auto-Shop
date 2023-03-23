@@ -9,7 +9,7 @@ abstract class AbstractODM <T> {
     this.model = models[modelName] || model(modelName, this._schema);
   }
 
-  protected async createOne(documentFromRequest: T): Promise<T> {
+  public async createOne(documentFromRequest: T): Promise<T> {
     const documentCreated = await this.model.create(documentFromRequest);
     return documentCreated;
   }
