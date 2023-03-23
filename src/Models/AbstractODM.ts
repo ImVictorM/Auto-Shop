@@ -1,6 +1,6 @@
 import { Model, Schema, models, model } from 'mongoose';
 
-abstract class ODM <T> {
+abstract class AbstractODM <T> {
   private _schema: Schema;
   protected model: Model<T>;
 
@@ -10,4 +10,4 @@ abstract class ODM <T> {
   }
 }
 
-export default ODM;
+export default AbstractODM;
