@@ -23,6 +23,15 @@ abstract class AbstractODM <T> {
     const document = await this.model.findById(id);
     return document;
   }
+ 
+  public async updateOne(id: string, patch: Partial<T>): Promise<T | null> {
+    const updatedDoc = await this.model.findOneAndUpdate(
+      { _id: id }, 
+      patch,
+      { new: true },
+    );
+    return updatedDoc;
+  }
 }
 
 export default AbstractODM;
