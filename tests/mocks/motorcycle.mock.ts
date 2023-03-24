@@ -1,5 +1,5 @@
-import Motorcycle from '../../../src/Domains/Motorcycle';
-import IMotorcycle from '../../../src/Interfaces/IMotorcycle';
+import Motorcycle from '../../src/Domains/Motorcycle';
+import IMotorcycle from '../../src/Interfaces/IMotorcycle';
 
 export const ALL_MOTOS = [
   {

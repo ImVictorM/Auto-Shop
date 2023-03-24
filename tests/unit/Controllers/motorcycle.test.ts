@@ -9,7 +9,7 @@ import {
   VALID_MOTO_FROM_REQ, 
   VALID_MOTO_FROM_SERVICE,
   VALID_ID,
-} from '../mocks/motorcycle.mock';
+} from '../../mocks/motorcycle.mock';
 
 chai.use(sinonChai);
 

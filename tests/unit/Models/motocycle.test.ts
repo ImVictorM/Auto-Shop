@@ -7,7 +7,7 @@ import {
   VALID_MOTO_FROM_DB, 
   VALID_MOTO_FROM_REQ, 
   VALID_ID, 
-} from '../mocks/motorcycle.mock';
+} from '../../mocks/motorcycle.mock';
 
 const { expect } = chai;
 
