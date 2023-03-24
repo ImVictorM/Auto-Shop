@@ -45,8 +45,16 @@ describe('Testing CarService', function () {
     expect(response).to.be.deep.equal(VALID_CAR_FROM_DB);
   });
 
+  it('Can delete a car by its id', async function () {
+    Sinon.stub(CarODM.prototype, 'deleteOne').resolves(VALID_CAR_FROM_DB);
+
+    const response = await service.deleteById(VALID_ID);
+
+    expect(response).to.be.equal(undefined);
+  });
+
   it('throws an exception when the car id isn\'t valid', async function () {
-    Sinon.stub(CarODM.prototype, 'getById').resolves();
+    Sinon.stub(CarODM.prototype, 'getById').resolves(null);
 
     try {
       await service.getById('123');

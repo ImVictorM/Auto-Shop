@@ -33,4 +33,6 @@ export const VALID_MOTO_FROM_REQ = {
   engineCapacity: 600,
 } as IMotorcycle;
 
+export const VALID_ID = '634852326b35b59438fbea2f';
+
 export const VALID_MOTO_FROM_DB = ALL_MOTOS[0] as IMotorcycle;
