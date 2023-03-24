@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "tsnd src/server.ts",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "test": "jest -i --verbose",
-    "test:mocha": "mocha -r ts-node/register tests/**/**/*.test.ts --exit -t 60000",
+    "test": "npm run test:integration && npm run test:unit",
+    "test:integration": "mocha -r ts-node/register tests/integration/**/**/*.test.ts --exit -t 60000",
+    "test:unit": "mocha -r ts-node/register tests/unit/**/**/*.test.ts --exit -t 60000",
     "test:coverage": "nyc mocha -r ts-node/register tests/**/**/*.test.ts --exit -t 60000"
   },
   "devDependencies": {
