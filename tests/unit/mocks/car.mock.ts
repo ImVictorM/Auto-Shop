@@ -36,5 +36,3 @@ export const VALID_ID = '634852326b35b59438fbea31';
 export const VALID_CAR_FROM_DB = {
   ...ALL_CARS[1],
 };
-
-export default VALID_CAR_FROM_REQ;

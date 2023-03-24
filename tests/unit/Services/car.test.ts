@@ -2,7 +2,7 @@ import chai from 'chai';
 import Sinon from 'sinon';
 import CarODM from '../../../src/Models/CarODM';
 import CarService from '../../../src/Services/CarService';
-import { VALID_CAR_FROM_REQ, ALL_CARS, VALID_CAR_FROM_DB, VALID_ID } from './mocks/car.mock';
+import { VALID_CAR_FROM_REQ, ALL_CARS, VALID_CAR_FROM_DB, VALID_ID } from '../mocks/car.mock';
 
 const { expect } = chai;
 
