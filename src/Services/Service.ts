@@ -34,6 +34,12 @@ abstract class Service <DataInterface, Domain> {
     return car;
   }
 
+  public async deleteById(id: string): Promise<void> {
+    this.validateIdFromRequest(id);
+    const deletedDoc = await this.odm.deleteOne(id);
+    this.validateDocExistence(deletedDoc);
+  }
+
   abstract validateIdFromRequest(id: string): void;
 
   abstract validateDocExistence(doc: DataInterface | null): void;

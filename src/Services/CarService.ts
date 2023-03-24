@@ -12,7 +12,7 @@ class CarService extends Service<ICar, Car> {
     super(odm);
   }
 
-  public mapDoc(carFromDB: ICar) {
+  public mapDoc(carFromDB: ICar): Car {
     const mappedCar = new Car(carFromDB);
     return mappedCar;
   }

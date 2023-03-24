@@ -44,6 +44,17 @@ abstract class Controller <DataInterface, Domain> {
     }
   }
 
+  protected async requestToDeleteOne(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+
+    try {
+      await this.service.deleteById(id);
+      return res.status(HTTPStatusCode.NO_CONTENT).end();
+    } catch (error) {
+      return next(error);
+    }
+  }
+
   abstract initRoutes(): Router;
 }
 

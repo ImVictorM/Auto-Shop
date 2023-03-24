@@ -32,6 +32,11 @@ abstract class AbstractODM <T> {
     );
     return updatedDoc;
   }
+
+  public async deleteOne(id: string): Promise<T | null> {
+    const deletedDoc = await this.model.findOneAndDelete({ _id: id });
+    return deletedDoc;
+  }
 }
 
 export default AbstractODM;

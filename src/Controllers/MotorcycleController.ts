@@ -15,6 +15,7 @@ class MotorcycleController extends Controller <IMotorcycle, Motorcycle> {
     this.router.get('/:id', (req, res, next) => this.requestOne(req, res, next));
     this.router.put('/:id', (req, res, next) => this.requestToUpdateOne(req, res, next));
     this.router.post('/', (req, res) => this.requestCreation(req, res));
+    this.router.delete('/:id', (req, res, next) => this.requestToDeleteOne(req, res, next));
     return this.router;
   }
 }
