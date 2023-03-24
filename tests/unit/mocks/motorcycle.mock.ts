@@ -1,3 +1,4 @@
+import Motorcycle from '../../../src/Domains/Motorcycle';
 import IMotorcycle from '../../../src/Interfaces/IMotorcycle';
 
 export const ALL_MOTOS = [
@@ -36,3 +37,7 @@ export const VALID_MOTO_FROM_REQ = {
 export const VALID_ID = '634852326b35b59438fbea2f';
 
 export const VALID_MOTO_FROM_DB = ALL_MOTOS[0] as IMotorcycle;
+
+export const VALID_MOTO_FROM_SERVICE = new Motorcycle(VALID_MOTO_FROM_DB);
+
+export const ALL_MOTOS_FROM_SERVICE = ALL_MOTOS.map((moto) => new Motorcycle(moto));

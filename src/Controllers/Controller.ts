@@ -11,18 +11,18 @@ abstract class Controller <DataInterface, Domain> {
     this.router = Router();
   }
 
-  protected async requestAll(_req: Request, res: Response) {
+  public async requestAll(_req: Request, res: Response) {
     const docList = await this.service.getAll();
     return res.status(HTTPStatusCode.OK).json(docList);
   }
 
-  protected async requestCreation(req: Request, res: Response) {
+  public async requestCreation(req: Request, res: Response) {
     const docFromReq = req.body;
     const createdDoc = await this.service.createOne(docFromReq);
     return res.status(HTTPStatusCode.CREATED).json(createdDoc);
   }
 
-  protected async requestOne(req: Request, res: Response, next: NextFunction) {
+  public async requestOne(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
     try {
       const document = await this.service.getById(id);
@@ -32,7 +32,7 @@ abstract class Controller <DataInterface, Domain> {
     }
   }
 
-  protected async requestToUpdateOne(req: Request, res: Response, next: NextFunction) {
+  public async requestToUpdateOne(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
     const patch = req.body;
 
@@ -44,7 +44,7 @@ abstract class Controller <DataInterface, Domain> {
     }
   }
 
-  protected async requestToDeleteOne(req: Request, res: Response, next: NextFunction) {
+  public async requestToDeleteOne(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
 
     try {

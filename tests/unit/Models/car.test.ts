@@ -13,7 +13,7 @@ describe('Testing CarODM', function () {
     Sinon.restore();
   });
 
-  it('Can create a car succesffully', async function () {
+  it('Can create a car successfully', async function () {
     Sinon.stub(Model, 'create').resolves(VALID_CAR_FROM_DB);
 
     const response = await odm.createOne(VALID_CAR_FROM_REQ);
@@ -37,7 +37,7 @@ describe('Testing CarODM', function () {
     expect(response).to.be.deep.equal(VALID_CAR_FROM_DB);
   });
 
-  it('Can updated a car by its id', async function () {
+  it('Can update a car by its id', async function () {
     Sinon.stub(Model, 'findOneAndUpdate').resolves(VALID_CAR_FROM_DB);
 
     const response = await odm.updateOne(VALID_ID, VALID_CAR_FROM_REQ);

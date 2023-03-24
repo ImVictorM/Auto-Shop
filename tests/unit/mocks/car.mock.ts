@@ -1,3 +1,5 @@
+import Car from '../../../src/Domains/Car';
+
 export const VALID_CAR_FROM_REQ = {
   model: 'Marea',
   year: 2002,
@@ -36,3 +38,7 @@ export const VALID_ID = '634852326b35b59438fbea31';
 export const VALID_CAR_FROM_DB = {
   ...ALL_CARS[1],
 };
+
+export const VALID_CAR_FROM_SERVICE = new Car(VALID_CAR_FROM_DB);
+
+export const ALL_CARS_FROM_SERVICE = ALL_CARS.map((car) => new Car(car));

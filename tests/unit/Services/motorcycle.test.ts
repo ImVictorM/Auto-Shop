@@ -18,7 +18,7 @@ describe('Testing MotorcycleService', function () {
     Sinon.restore();
   });
 
-  it('Can create a motorcycle succesffully', async function () {
+  it('Can create a motorcycle successfully', async function () {
     Sinon.stub(MotorcycleODM.prototype, 'createOne').resolves(VALID_MOTO_FROM_DB);
 
     const response = await service.createOne(VALID_MOTO_FROM_REQ);
@@ -42,7 +42,7 @@ describe('Testing MotorcycleService', function () {
     expect(response).to.be.deep.equal(VALID_MOTO_FROM_DB);
   });
 
-  it('Can updated a motorcycle by its id', async function () {
+  it('Can update a motorcycle by its id', async function () {
     Sinon.stub(MotorcycleODM.prototype, 'updateOne').resolves(VALID_MOTO_FROM_DB);
 
     const response = await service.updateById(VALID_ID, VALID_MOTO_FROM_REQ);

@@ -13,7 +13,7 @@ describe('Testing CarService', function () {
     Sinon.restore();
   });
 
-  it('Can create a car succesffully', async function () {
+  it('Can create a car successfully', async function () {
     Sinon.stub(CarODM.prototype, 'createOne').resolves({ ...VALID_CAR_FROM_REQ, id: '123456' });
 
     const response = await service.createOne(VALID_CAR_FROM_REQ);
@@ -37,7 +37,7 @@ describe('Testing CarService', function () {
     expect(response).to.be.deep.equal(VALID_CAR_FROM_DB);
   });
 
-  it('Can updated a car by its id', async function () {
+  it('Can update a car by its id', async function () {
     Sinon.stub(CarODM.prototype, 'updateOne').resolves(VALID_CAR_FROM_DB);
 
     const response = await service.updateById(VALID_ID, VALID_CAR_FROM_REQ);
