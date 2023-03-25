@@ -146,13 +146,66 @@ In this project, I was able to:
 </table>
 
 ## Running the application ⚙️
- > You must have node, docker, and docker-compose installed
 
 1. Clone the repository and enter it
 ```
 git clone git@github.com:ImVictorM/Auto-Shop.git && cd Auto-Shop
 ```
 
+### Methods
+
+<details>
+<summary><h4>🐋 Running with docker (recommended)</h4></summary>
+
+ > You must have docker and docker-compose installed
+ 
+2. Get the containers running
+```
+docker-compose up -d
+```
+
+</details>
+
+<details>
+<summary><h4>🖥️ Running locally</h4></summary>
+
+ > You must have node on version 16 and MongoDB installed
+ 
+2. Install the dependencies
+```
+npm install
+```
+
+3. Rename the file `.env.example` to `.env`
+
+4. Start the server
+```
+npm run dev
+```
+</details>
+
+## Testing 🛠️
+<strong>Note:</strong> if you're running the app using docker, you must use the following commands inside the car_shop container. To enter the container, type:
+```
+docker exec -it car_shop bash
+```
+
+Running all tests:
+```
+npm test
+```
+Running integration tests:
+```
+npm run test:integration
+```
+Running unit tests:
+```
+npm run test:unit
+```
+Run all tests and see its coverage:
+```
+npm run test:coverage
+```
 
 ## Endpoints 🌐
 
