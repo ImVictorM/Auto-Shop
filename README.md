@@ -1,10 +1,16 @@
 # Auto Shop 🏎️
 
 ## Project Context 💡
+API that manages a vehicle concessionaire using the four basic CRUD operations. I designed the project architecture with a layered approach based on Domain-Driven Design (DDD), incorporating Object-Oriented Programming (OOP) and SOLID principles. To ensure correctness, I developed unit and integration tests to cover almost 99% of the project's functionalities.
 
 ### Acquired Knowledge 📖
 
 In this project, I was able to:
+- Create an API CRUD using OOP and SOLID principles;
+- Use MongoDB;
+- Use Mongoose ODM;
+- Create unit tests;
+- Create Integration tests.
 
 ## Main Technologies 🧰
 <table>
